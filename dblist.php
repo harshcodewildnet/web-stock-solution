@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <img src="assets/wnet-image.png" alt="WildNet logo">
+        </div>
+        <div class="search-area">
+            <select name="serach-cat" id="search-cat" required>
+                <option value="" selected disabled hidden>Search By</option>
+                <option value="cat1">Cat 1</option>
+                <option value="cat2">Cat 2</option>
+                <option value="cat3">Cat 3</option>
+                <option value="cat4">Cat 4</option>
+            </select>
+            <input type="text" class="search-text" placeholder="Search for a website">
+        </div>
+    </header>
+
+    <!-- SideBar Menu -->
+    <aside>
+        <nav class="sidenav">
+            <div class="nav-tabs">
+                <a href="dashboard.php">
+                    <button type="button" class="tab"><i class="fa-solid fa-house"></i>Dashboard</button>
+                </a>
+                <a href="add-website.php">
+                    <button type="button" class="tab"><i class="fa-solid fa-square-plus"></i>Add Website</button>
+                </a>
+                <a href="#">
+                    <button type="button" class="tab active"><i class="fa-solid fa-bars-staggered"></i>DB List</button>
+                </a>
+                <a href="manage-user.php">
+                    <button type="button" class="tab"><i class="fa-solid fa-user"></i>Manage User</button>
+                </a>
+            </div>
+            <button type="button" class="logout-btn" id="logout-btn"><i class="fa-solid fa-power-off"></i>Log
+                out</button>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Filter Boxes -->
+        <div class="filters">
+            <div class="filter-multiselect">
+                <div class="select-box">Category<i class="fa-solid fa-caret-down"></i></div>
+                <div class="options">
+                    <label><input type="checkbox" value="cat1">Technology</label>
+                    <label><input type="checkbox" value="cat2">Travel</label>
+                    <label><input type="checkbox" value="cat3">Food & Recipes</label>
+                    <label><input type="checkbox" value="cat4">Lifestyle</label>
+                    <label><input type="checkbox" value="cat5">Education</label>
+                    <label><input type="checkbox" value="cat6">Finance</label>
+                    <label><input type="checkbox" value="cat7">Fashion</label>
+                    <label><input type="checkbox" value="cat8">Health & Fitness</label>
+                    <label><input type="checkbox" value="cat9">Gaming</label>
+                    <label><input type="checkbox" value="cat10">DIY & Home</label>
+                    <label><input type="checkbox" value="cat11">News & Politics</label>
+                    <label><input type="checkbox" value="cat12">Entertainment</label>
+                    <label><input type="checkbox" value="cat13">Business & Marketing</label>
+                </div>
+            </div>
+            <div class="filter-multiselect">
+                <div class="select-box">Traffic<i class="fa-solid fa-caret-down"></i></div>
+                <div class="options">
+                    <label><input type="checkbox" value="traffic1">0 - 1K</label>
+                    <label><input type="checkbox" value="traffic2">1 - 5K</label>
+                    <label><input type="checkbox" value="traffic3">5 - 10K</label>
+                    <label><input type="checkbox" value="traffic4">10 - 15K</label>
+                    <label><input type="checkbox" value="traffic5">15 - 20K</label>
+                </div>
+            </div>
+            <div class="filter-multiselect">
+                <div class="select-box">Location<i class="fa-solid fa-caret-down"></i></div>
+                <div class="options">
+                    Global
+
+
+                    <label><input type="checkbox" value="location1">United States</label>
+                    <label><input type="checkbox" value="location2">United Kingdom</label>
+                    <label><input type="checkbox" value="location3">Canada</label>
+                    <label><input type="checkbox" value="location4">Australia</label>
+                    <label><input type="checkbox" value="location5">India</label>
+                    <label><input type="checkbox" value="location6">Germany</label>
+                    <label><input type="checkbox" value="location7">France</label>
+                    <label><input type="checkbox" value="location8">Philippines</label>
+                    <label><input type="checkbox" value="location9">Brazil</label>
+                    <label><input type="checkbox" value="location10">Italy</label>
+                </div>
+            </div>
+            <div class="filter-multiselect">
+                <div class="select-box">DA Range<i class="fa-solid fa-caret-down"></i></div>
+                <div class="options">
+                    <label><input type="checkbox" value="da1">0 - 10</label>
+                    <label><input type="checkbox" value="da2">11 - 20</label>
+                    <label><input type="checkbox" value="da3">21 - 30</label>
+                    <label><input type="checkbox" value="da4">31 - 40</label>
+                    <label><input type="checkbox" value="da5">41 - 50</label>
+                    <label><input type="checkbox" value="da6">51 - 60</label>
+                    <label><input type="checkbox" value="da7">61 - 70</label>
+                    <label><input type="checkbox" value="da8">71 - 80</label>
+                    <label><input type="checkbox" value="da9">81 - 90</label>
+                    <label><input type="checkbox" value="da10">91 - 100</label>
+                </div>
+            </div>
+            <div class="filter-multiselect">
+                <div class="select-box">DR Range<i class="fa-solid fa-caret-down"></i></div>
+                <div class="options">
+                    <label><input type="checkbox" value="dr1">0 - 10</label>
+                    <label><input type="checkbox" value="dr2">11 - 20</label>
+                    <label><input type="checkbox" value="dr3">21 - 30</label>
+                    <label><input type="checkbox" value="dr4">31 - 40</label>
+                    <label><input type="checkbox" value="dr5">41 - 50</label>
+                    <label><input type="checkbox" value="dr6">51 - 60</label>
+                    <label><input type="checkbox" value="dr7">61 - 70</label>
+                    <label><input type="checkbox" value="dr8">71 - 80</label>
+                    <label><input type="checkbox" value="dr9">81 - 90</label>
+                    <label><input type="checkbox" value="dr10">91 - 100</label>
+                </div>
+            </div>
+            <div class="filter-multiselect">
+                <div class="select-box">Price Range<i class="fa-solid fa-caret-down"></i></div>
+                <div class="options">
+                    <label><input type="checkbox" value="price1">$0 - $50</label>
+                    <label><input type="checkbox" value="price2">$0 - $100</label>
+                    <label><input type="checkbox" value="price3">$0 - $250</label>
+                    <label><input type="checkbox" value="price4">$0 - $500</label>
+                    <label><input type="checkbox" value="price5">$0 - $1000</label>
+                </div>
+            </div>
+            <div class="filter-multiselect">
+                <div class="select-box">Spam Score<i class="fa-solid fa-caret-down"></i></div>
+                <div class="options">
+                    <label><input type="checkbox" value="spamscore1">0 - 10% (Low risk)</label>
+                    <label><input type="checkbox" value="spamscore2">11% - 30% (Moderate Risk)</label>
+                    <label><input type="checkbox" value="spamscore3">31% - 60% (High Risk)</label>
+                    <label><input type="checkbox" value="spamscore4">61% - 100% (Very High Risk)</label>
+                </div>
+            </div>
+            <div class="filter-multiselect">
+                <div class="select-box">Status<i class="fa-solid fa-caret-down"></i></div>
+                <div class="options">
+                    <label><input type="checkbox" value="status1">Active</label>
+                    <label><input type="checkbox" value="status2">inactive</label>
+                    <label><input type="checkbox" value="status3">Under Review</label>
+                    <label><input type="checkbox" value="status4">Blocked</label>
+                    <label><input type="checkbox" value="status5">Draft</label>
+                </div>
+            </div>
+            <div class="filter-multiselect">
+                <div class="select-box">Added By<i class="fa-solid fa-caret-down"></i></div>
+                <div class="options">
+                    <label><input type="checkbox" value="addedby1">Admin</label>
+                    <label><input type="checkbox" value="addedby2">Team Member</label>
+                    <label><input type="checkbox" value="addedby3">External Conributor</label>
+                    <label><input type="checkbox" value="addedby4">Blogger</label>
+                    <label><input type="checkbox" value="addedby5">CSV Upload</label>
+                </div>
+            </div>
+            <div class="filter-multiselect">
+                <div class="select-box">Timeline<i class="fa-solid fa-caret-down"></i></div>
+                <div class="options">
+                    <label><input type="checkbox" value="timeline1">Today</label>
+                    <label><input type="checkbox" value="timeline2">Last 7 Days</label>
+                    <label><input type="checkbox" value="timeline3">Last 30 Days</label>
+                    <label><input type="checkbox" value="timeline4">This Year</label>
+                </div>
+            </div>
+        </div>
+        <!-- Filter Actions -->
+        <!-- <div class="more-filter"><a href="#">More Filters</a></div> -->
+        <div class="filter-actions">
+            <button type="button" class="filter-action" id="apply">Apply Filters</button>
+            <button type="button" class="filter-action" id="clear">Clear Filters</button>
+        </div>
+        <hr>
+        <!-- Content Area -->
+        <div class="content-area">
+            <div class="site-count">
+                <h4>Total Websites :</h4>
+                <h2>48k</h2>
+            </div>
+            <div class="table-wrapper">
+                <table class="sitelist">
+                    <thead>
+                        <tr>
+                            <th>Category Name</th>
+                            <th>Website URL</th>
+                            <th>Currency</th>
+                            <th>Price</th>
+                            <th>Client Name</th>
+                            <th>Email</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Travel</td>
+                            <td><a href="">Travel.com</a></td>
+                            <td>USD</td>
+                            <td>250</td>
+                            <td>Finzip Co.</td>
+                            <td>finzip@xyz.com</td>
+                            <td class="list-actions">
+                                <i class="fa-solid fa-eye view-btn"></i>
+                                <i class="fa-solid fa-pencil edit-btn"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Finance</td>
+                            <td><a href="">finvest.com</a></td>
+                            <td>USD</td>
+                            <td>200</td>
+                            <td>Accevate Inc.</td>
+                            <td>accevate@abc.com</td>
+                            <td class="list-actions">
+                                <i class="fa-solid fa-eye view-btn"></i>
+                                <i class="fa-solid fa-pencil edit-btn"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Technology</td>
+                            <td><a href="">techie.com</a></td>
+                            <td>USD</td>
+                            <td>220</td>
+                            <td>Steve Williams</td>
+                            <td>steve@xyz.com</td>
+                            <td class="list-actions">
+                                <i class="fa-solid fa-eye view-btn"></i>
+                                <i class="fa-solid fa-pencil edit-btn"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Business and Market</td>
+                            <td><a href="">dailyinvest.com</a></td>
+                            <td>USD</td>
+                            <td>300</td>
+                            <td>Quirl Corp.</td>
+                            <td>hans121@xyz.com</td>
+                            <td class="list-actions">
+                                <i class="fa-solid fa-eye view-btn"></i>
+                                <i class="fa-solid fa-pencil edit-btn"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Home and DIY</td>
+                            <td><a href="">mynest.com</a></td>
+                            <td>USD</td>
+                            <td>220</td>
+                            <td>Semrush Inc.</td>
+                            <td>amanda@xyz.com</td>
+                            <td class="list-actions">
+                                <i class="fa-solid fa-eye view-btn"></i>
+                                <i class="fa-solid fa-pencil edit-btn"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>News and Politics</td>
+                            <td><a href="">global.com</a></td>
+                            <td>USD</td>
+                            <td>280</td>
+                            <td>ABC Media</td>
+                            <td>contact@abcmedia.com</td>
+                            <td class="list-actions">
+                                <i class="fa-solid fa-eye view-btn"></i>
+                                <i class="fa-solid fa-pencil edit-btn"></i>
+                            </td>
+                        </tr>
+                        <td>Finance</td>
+                        <td><a href="">fintest.com</a></td>
+                        <td>USD</td>
+                        <td>200</td>
+                        <td>David</td>
+                        <td>david_m@abc.com</td>
+                        <td class="list-actions">
+                            <i class="fa-solid fa-eye view-btn"></i>
+                            <i class="fa-solid fa-pencil edit-btn"></i>
+                        </td>
+                        </tr>
+                        <tr>
+                            <td>Technology</td>
+                            <td><a href="">techie.com</a></td>
+                            <td>USD</td>
+                            <td>220</td>
+                            <td>Steve</td>
+                            <td>steve@xyz.com</td>
+                            <td class="list-actions">
+                                <i class="fa-solid fa-eye view-btn"></i>
+                                <i class="fa-solid fa-pencil edit-btn"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Business and Market</td>
+                            <td><a href="">dailyinvest.com</a></td>
+                            <td>USD</td>
+                            <td>300</td>
+                            <td>Hans</td>
+                            <td>hans121@xyz.com</td>
+                            <td class="list-actions">
+                                <i class="fa-solid fa-eye view-btn"></i>
+                                <i class="fa-solid fa-pencil edit-btn"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Business and Market</td>
+                            <td><a href="">dailyinvest.com</a></td>
+                            <td>USD</td>
+                            <td>300</td>
+                            <td>Hans</td>
+                            <td>hans121@xyz.com</td>
+                            <td class="list-actions">
+                                <i class="fa-solid fa-eye view-btn"></i>
+                                <i class="fa-solid fa-pencil edit-btn"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Business and Market</td>
+                            <td><a href="">dailyinvest.com</a></td>
+                            <td>USD</td>
+                            <td>300</td>
+                            <td>Hans</td>
+                            <td>hans121@xyz.com</td>
+                            <td class="list-actions">
+                                <i class="fa-solid fa-eye view-btn"></i>
+                                <i class="fa-solid fa-pencil edit-btn"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="pagination">
+                <span class="prev"><i class="fa-solid fa-chevron-left"></i></span>
+                <span class="page">1</span>
+                <span class="next"><i class="fa-solid fa-chevron-right"></i></span>
+            </div>
+        </div>
+    </main>
+
+
+    <div class="modal-dialog" id="modal-dialog-view">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>View Website</h3>
+                <button class="close-btn" id="close-btn-view"><i class="fa-solid fa-circle-xmark"></i></button>
+            </div>
+            <hr>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="">Category Name</label>
+                    <input type="text" class="form-control" value="Technology" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="">Status</label>
+                    <input type="text" class="form-control" value="Active" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="">Currency</label>
+                    <input type="text" class="form-control" value="USD" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="">Price</label>
+                    <input type="text" class="form-control" value="280" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="">Client Name</label>
+                    <input type="text" class="form-control" value="ABV Media Pvt Ltd" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="">Blogger Name</label>
+                    <input type="text" class="form-control" value="Jasper Kavetzki" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="">Blogger Email</label>
+                    <input type="text" class="form-control" value="jasper@xyz.com" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="">Blogger Mobile</label>
+                    <input type="text" class="form-control" value="9895565454" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="">Spam Score</label>
+                    <input type="text" class="form-control" value="15%" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="">DR</label>
+                    <input type="text" class="form-control" value="7.6" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="">Traffic</label>
+                    <input type="text" class="form-control" value="22000" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="">DA</label>
+                    <input type="text" class="form-control" value="44" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="">Web URL</label>
+                    <input type="text" class="form-control" value="dailyinvest.com" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="">Location</label>
+                    <input type="text" class="form-control" value="United Kingdom" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="">Mode</label>
+                    <input type="text" class="form-control" value="-" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="">Added By</label>
+                    <input type="text" class="form-control" value="Team" disabled>
+                </div>
+            </div>
+            <!-- <div class="modal-footer"></div> -->
+        </div>
+    </div>
+
+
+    <div class="modal-dialog" id="modal-dialog-edit">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Edit Website</h3>
+                <button class="close-btn" id="close-btn-edit"><i class="fa-solid fa-circle-xmark"></i></button>
+            </div>
+            <hr>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="">Category Name</label>
+                    <select class="form-control">
+                        <option value="Technology">Technology</option>
+                        <option value="Finance">Finance</option>
+                        <option value="Health">Health</option>
+                        <option value="Education">Education</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="">Status</label>
+                    <select class="form-control">
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                        <option value="under-review">Under Review</option>
+                        <option value="blocked">Blocked</option>
+                        <option value="draft">Draft</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="">Currency</label>
+                    <input type="text" class="form-control" value="USD">
+                </div>
+                <div class="form-group">
+                    <label for="">Price</label>
+                    <input type="text" class="form-control" value="280">
+                </div>
+                <div class="form-group">
+                    <label for="">Client Name</label>
+                    <input type="text" class="form-control" value="ABV Media Pvt Ltd">
+                </div>
+                <div class="form-group">
+                    <label for="">Blogger Name</label>
+                    <input type="text" class="form-control" value="Jasper Kavetzki">
+                </div>
+                <div class="form-group">
+                    <label for="">Blogger Email</label>
+                    <input type="text" class="form-control" value="jasper@xyz.com">
+                </div>
+                <div class="form-group">
+                    <label for="">Blogger Mobile</label>
+                    <input type="text" class="form-control" value="9895565454">
+                </div>
+                <div class="form-group">
+                    <label for="">Spam Score</label>
+                    <input type="text" class="form-control" value="15%">
+                </div>
+                <div class="form-group">
+                    <label for="">DR</label>
+                    <input type="text" class="form-control" value="7.6">
+                </div>
+                <div class="form-group">
+                    <label for="">Traffic</label>
+                    <input type="text" class="form-control" value="22000">
+                </div>
+                <div class="form-group">
+                    <label for="">DA</label>
+                    <input type="text" class="form-control" value="44">
+                </div>
+                <div class="form-group">
+                    <label for="">Web URL</label>
+                    <input type="text" class="form-control" value="dailyinvest.com">
+                </div>
+                <div class="form-group">
+                    <label for="">Location</label>
+                    <select class="form-control">
+                        <option value="United Kingdom">United Kingdom</option>
+                        <option value="United States">United States</option>
+                        <option value="India">India</option>
+                        <option value="Australia">Australia</option>
+                        <option value="Australia">Canada</option>
+                        <option value="Australia">France</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="">Mode</label>
+                    <select class="form-control">
+                        <option value="mode1">Mode 1</option>
+                        <option value="mode2">Mode 2</option>
+                        <option value="mode3">Mode 3</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="">Added By</label>
+                    <select class="form-control">
+                        <option value="admin">Admin</option>
+                        <option value="super-admin">Super Admin</option>
+                        <option value="team">Team</option>
+                        <option value="outsider">Outsider</option>
+                    </select>
+                </div>
+                <input type="submit" name="addsubmit" class="addsubmit" id="addsubmit" value="Save">
+            </div>
+            <!-- <div class="modal-footer"></div> -->
+        </div>
+    </div>
+
+
+    <!-- Footer (optional) -->
+    <!-- <footer></footer> -->
+
+    <!-- Logout alert box -->
+    <div id="custom-alert" class="alert-overlay">
+        <div class="alert-box">
+            <p>Are you sure you want to logout?</p>
+            <div class="alert-actions">
+                <button id="confirm-logout">Yes</button>
+                <button id="cancel-logout">No</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Message Alert -->
+    <div id="message-alert" class="alert-overlay">
+        <div class="alert-box">
+            <p>Website Updated!</p>
+            <div class="alert-actions">
+                <button id="ok-btn">Ok</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+
+    <!-- Save Script -->
+    <script>
+        const saveButton = document.getElementById('addsubmit');
+        const msgAlert = document.getElementById('message-alert');
+        const okBtn = document.getElementById('ok-btn');
+
+        // show message box
+        saveButton.onclick = () => {
+            msgAlert.style.display = 'flex';
+        }
+
+        // close on ok button
+        okBtn.onclick = () => {
+            msgAlert.style.display = 'none';
+            window.location.href = 'dblist.php';
+        }
+
+    </script>
+
+    <!-- Logout Script -->
+    <script>
+        const logoutBtn = document.getElementById('logout-btn');
+        const customAlert = document.getElementById('custom-alert');
+        const confirmLogout = document.getElementById('confirm-logout');
+        const cancelLogout = document.getElementById('cancel-logout');
+
+        // Show the alert box
+        logoutBtn.onclick = () => {
+            customAlert.style.display = 'flex';
+        };
+
+        // If user confirms logout
+        confirmLogout.onclick = () => {
+            customAlert.style.display = 'none';
+            // Put your logout logic here
+            alert("Logged out!");
+            window.location.href = 'index.php';
+        };
+
+        // If user cancels
+        cancelLogout.onclick = () => {
+            customAlert.style.display = 'none';
+        };
+    </script>
+
+    <!-- Filter Script -->
+    <script>
+        const filters = document.querySelectorAll('.filter-multiselect');
+        filters.forEach(filter => {
+            const selectBox = filter.querySelector('.select-box');
+            selectBox.addEventListener('click', (e) => {
+                e.stopPropagation();
+
+                // Close all other filters
+                filters.forEach(f => {
+                    if (f !== filter)
+                        f.classList.remove('active');
+                })
+
+                //toggle this one
+                filter.classList.add('active');
+            })
+        });
+
+        // click outside to close
+        window.addEventListener('click', (e) => {
+            filters.forEach(filter => {
+                if (!filter.contains(e.target))
+                    filter.classList.remove('active');
+            });
+        });
+    </script>
+
+    <!-- Modal Script -->
+    <script>
+        const viewModal = document.getElementById('modal-dialog-view');
+        const editModal = document.getElementById('modal-dialog-edit');
+        const closeBtnView = document.getElementById('close-btn-view');
+        const closeBtnEdit = document.getElementById('close-btn-edit');
+
+        // when any view button is clicked open the modal
+        document.querySelectorAll('.view-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.modal-body .form-group input').forEach(inputElement => {
+                    inputElement.disabled = true;
+                })
+                viewModal.classList.add('show');
+            })
+        });
+
+        // when any view button is clicked open the modal
+        document.querySelectorAll('.edit-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.modal-body .form-group input').forEach(inputElement => {
+                    inputElement.disabled = false;
+                })
+                editModal.classList.add('show');
+            })
+        });
+
+        // when close button inside modal is clicked, close the modal 
+        closeBtnView.addEventListener('click', () => {
+            viewModal.classList.remove('show');
+        });
+
+        // when close button inside modal is clicked, close the modal 
+        closeBtnEdit.addEventListener('click', () => {
+            editModal.classList.remove('show');
+        });
+
+        window.addEventListener('click', (e) => {
+            if (viewModal === e.target) viewModal.classList.remove('show');
+        })
+
+        window.addEventListener('click', (e) => {
+            if (editModal === e.target) editModal.classList.remove('show');
+        })
+
+    </script>
+</body>
+
+</html>
